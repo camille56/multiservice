@@ -1,0 +1,4 @@
+création de la structure de base du projet multiservice
+création du réseau privé "proxy" avec la commande docker network create proxy
+
+création du dossier traefik et son docker-compose
