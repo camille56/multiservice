@@ -2,3 +2,12 @@ création de la structure de base du projet multiservice
 création du réseau privé "proxy" avec la commande docker network create proxy
 
 création du dossier traefik et son docker-compose
+se placer dedans et faire docker compose up -d
+Le service est up et accessible à l'adresse http://localhost:8080 (pour le dashboard)
+
+service hello
+création du package.json et index.js
+création du dockerfile (la recette pour le serveur next)
+création du docker-compose.yml
+On se place dans le dossier du service hello et : docker compose up -d --build
+le service est accessible sur: http://hello.localhost/

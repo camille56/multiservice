@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  hello:
+    build: .  # Utilise le Dockerfile du dossier courant
+    container_name: hello
+    # Pas de section "ports" ! On reste caché.
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      # Règle de routage : Si le domaine est hello.localhost, envoie ici
+      - "traefik.http.routers.hello.rule=Host(`hello.localhost`)"
+      # Indique à Traefik que ce conteneur écoute sur le port 3000 à l'intérieur
+      - "traefik.http.services.hello.loadbalancer.server.port=3000"
+
+networks:
+  proxy:
+    external: true

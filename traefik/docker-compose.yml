@@ -1,26 +1,19 @@
-version: '3.8'
-
+# docker-compose.yml
 services:
   traefik:
-    image: traefik:v2.10
-    container_name: traefik
-    # C'est le SEUL service qui a le droit d'ouvrir un port vers l'extérieur
+    image: traefik:v3.6
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
     ports:
       - "80:80"
-      - "8080:8080" # (Optionnel) Pour voir le tableau de bord de Traefik
+      - "8080:8080"
     volumes:
-      # CRITIQUE : Cela permet à Traefik d'écouter ce qui se passe dans Docker
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    command:
-      - "--api.insecure=true" # Active le dashboard (pour le dev)
-      - "--providers.docker=true" # Dit à Traefik : "Regarde les conteneurs Docker"
-      # CONTRAINTE FORTE : On refuse d'exposer les services par défaut
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80" # Traefik écoute sur le port 80 interne
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - proxy
-
-# On déclare que le réseau "proxy" existe déjà
+          - proxy
 networks:
   proxy:
     external: true
