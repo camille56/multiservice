@@ -20,4 +20,17 @@ modification de config/configuration.yml pour autoriser la requete depuis docker
 accès au service ha: http://ha.localhost/
 création d'un user ->  le user persiste après le redémarrage du service
 
+service projet
+création des dossiers nécessaires:
+    mkdir -p data/{downloads,movies,shows,music,books}
+    mkdir -p data/configs/{jellyfin,radarr,sonarr,lidarr,readarr,bazarr,prowlarr,qbittorrent}
+ajout des droits sur les dossiers pour que les services puissent y accéder:
+    sudo chown -R $USER:$USER data
+création du docker-compose.yml avec les services
+
+script lancement de tous les services
+ajout des droits pour le script
+    chmod +x ~/projets/multiservice/start.sh
+
+
 
