@@ -11,3 +11,13 @@ création du dockerfile (la recette pour le serveur next)
 création du docker-compose.yml
 On se place dans le dossier du service hello et : docker compose up -d --build
 le service est accessible sur: http://hello.localhost/
+
+service ha
+création du docker-compose.yml
+Se donner les droit sur le dossier ha pour que le service puisse y accéder:
+    sudo chown -R $USER:$USER ha/config
+modification de config/configuration.yml pour autoriser la requete depuis docker
+accès au service ha: http://ha.localhost/
+création d'un user ->  le user persiste après le redémarrage du service
+
+
